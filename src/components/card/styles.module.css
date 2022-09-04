@@ -13,3 +13,11 @@
 .imageContainer img {
     object-fit: cover;
 }
+
+.button {
+    background-color: #97979794;
+    height: 30px;
+    right: 5px;
+    top: 5px;
+    width: 30px;
+}
