@@ -1,0 +1,15 @@
+.container {
+    width: 48%;
+}
+
+.imageContainer, .imageContainer img {
+    border-radius: .8rem;
+}
+
+.imageContainer {
+    height: 130px;
+}
+
+.imageContainer img {
+    object-fit: cover;
+}

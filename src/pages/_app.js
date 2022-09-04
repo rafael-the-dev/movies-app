@@ -7,7 +7,7 @@ import 'src/styles/tailwind.css';
 import Layout from "src/components/layout"
 
 const MyApp = ({ Component, pageProps }) => {
-    console.log("hello world")
+    
     return (
         <>
             <Head>
