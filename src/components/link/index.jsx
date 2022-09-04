@@ -1,9 +1,10 @@
-import Link from "next/link"
+import classNames from "classnames"
 
+import Link from "next/link";
 
-const LinkContainer = ({ children, href, onClick }) => (
+const LinkContainer = ({ children, className, href, onClick }) => (
     <Link href={href}>
-        <a onClick={onClick}>
+        <a className={classNames(className)} onClick={onClick}>
             { children }
         </a>
     </Link>

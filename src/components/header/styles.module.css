@@ -3,3 +3,18 @@
     height: 35px;
     width: 35px;
 }
+
+@media screen and (min-width: 768px) {
+    .avatar {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .header {
+        box-sizing: border-box;
+        height: calc(100% - 2rem);
+        width: 60px;
+    }
+}
