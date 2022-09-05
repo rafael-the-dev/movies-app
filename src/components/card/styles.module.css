@@ -1,5 +1,5 @@
 .container {
-    width: 48%;
+    width: 100%;
 }
 
 .imageContainer, .imageContainer img {
@@ -7,12 +7,13 @@
 }
 
 .imageContainer {
-    height: 130px;
+    height: 180px;
 }
 
 .imageContainer img {
     object-fit: cover;
 }
+
 
 .button {
     background-color: #97979794;
@@ -20,4 +21,25 @@
     right: 5px;
     top: 5px;
     width: 30px;
+}
+
+.categoryItem::before, .categoryItem::after {
+    content: ".";
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    transform: translateY(-38%);
+}
+
+.categoryItem::before {
+    left: 4px;
+}
+
+.categoryItem::after {
+    right: 4px;
+}
+
+@media screen and (min-width: 450px) {  
+    
 }
