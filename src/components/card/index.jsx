@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import IconHome from "public/icons/icon-nav-home.svg";
 import IconMovies from "public/icons/icon-category-movie.svg";
-import IconTv from "public/icons/icon-nav-tv-series.svg";
+import IconTv from "public/icons/icon-category-tv-series.svg";
 import IconBookmarkEmpty from "public/icons/icon-bookmark-empty.svg";
 import IconBookmarkFull from "public/icons/icon-bookmark-full.svg";
 
