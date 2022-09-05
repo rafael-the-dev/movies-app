@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import classNames from "classnames";
 import ArrowIcon from "public/icons/icon-arrow.svg"
@@ -6,9 +6,17 @@ import ArrowIcon from "public/icons/icon-arrow.svg"
 const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
     const [ index, setIndex ] = useState(0);
     const [ childrenList, setChildrenList ] = useState([]); 
+    const isFirstRender = useRef(true);
 
     const hasPreviousItem = useMemo(() => index - 1 < 0, [ index ]);
-    const hasNextItem = useMemo(() => index + 1 >= childrenList.length, [ childrenList, index ]);
+
+    const hasNextItem = useMemo(() => {
+        if(isFirstRender.current) return;
+
+        const { innerWidth } = window;
+
+        return innerWidth > 1000 ? index + 2 >= childrenList.length : index + 1 >= childrenList.length
+    }, [ childrenList, index ]);
 
     const nextItemClickHandler = useCallback(() => {
         setIndex(currentIndex => {
@@ -21,6 +29,12 @@ const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
             return currentIndex - 1;
         })
     }, []);
+
+    useEffect(() => {
+        if(isFirstRender.current) {
+            isFirstRender.current = false;
+        }
+    }, [])
 
     useEffect(() => {
         setChildrenListRef.current = list => setChildrenList(list);

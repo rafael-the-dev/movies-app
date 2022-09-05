@@ -20,8 +20,15 @@ const TrendingCard = ({ category, isBookmarked, rating, title, thumbnail, year }
             <div className={classNames(classes.imageContainer, `h-full relative w-full`)}>
                 <Image 
                     alt={title}
+                    className={classNames(classes.smallImage)}
                     layout="fill"
                     src={thumbnail.trending.small}
+                />
+                <Image 
+                    alt={title}
+                    className={classNames(classes.largeImage, "hidden")}
+                    layout="fill"
+                    src={thumbnail.trending.large}
                 />
                 <button className={classNames(classes.button, 
                     'absolute border-0 flex items-center justify-center outline-none rounded-full')}>

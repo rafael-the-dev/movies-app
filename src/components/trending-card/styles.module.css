@@ -30,3 +30,13 @@
     border-radius: 13px;
     padding: 0.35rem 0.5rem;
 }
+
+@media screen and (min-width: 540px) {
+    .smallImage {
+        display: none;
+    }
+
+    .largeImage {
+        display: block;
+    }
+}

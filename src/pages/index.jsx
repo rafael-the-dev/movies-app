@@ -11,28 +11,67 @@ const Home = () => {
     const currentIndex = useRef(0);
     const sliderRef = useRef(null);
     const setChildrenListRef = useRef(null);
-
+    const gap = useRef(0);
+    const widthReducer = useRef(0);
+    
     const layout = useCallback(() => {
         const { innerWidth } = window;
 
-        sliderRef.current.style.width = `${innerWidth * childrenList.current.length}px`;
+        let width = innerWidth;
+        gap.current = 70;
+        widthReducer.current = 90;
 
         childrenList.current.forEach((child, index) => {
-            if(innerWidth > 600) {
-
+            if(innerWidth > 1230) {
+                widthReducer.current = 90
+                width = innerWidth / 2.4;
+            } 
+            else if(innerWidth > 1000) {
+                widthReducer.current = 90
+                width = innerWidth / 2;
+            } 
+            else if(innerWidth > 900) {
+                widthReducer.current = 90
+                width = innerWidth / 1.5
+            } 
+            else if(innerWidth > 840) {
+                widthReducer.current = 290;
+            } 
+            else if(innerWidth > 680) {
+                widthReducer.current = 250;
+            } 
+            else if(innerWidth > 540) {
+                widthReducer.current = 150;
             } else {
-                child.style.width = `${innerWidth - 90}px`;
-                child.style.left = `${(innerWidth - 70) * index}px`;
+                
             }
-        })
+
+            child.style.width = `${width - widthReducer.current}px`;
+            child.style.left = `${(width - (widthReducer.current - 20)) * index}px`;
+        });
+
+        sliderRef.current.style.width = `${width * childrenList.current.length}px`;
     }, []);
 
     const slide = useCallback(({ index }) => {
         const { innerWidth } = window;
-        let width = innerWidth - 70;
+        let width = innerWidth - (widthReducer.current - 20);
+
+        if(innerWidth > 1230) {
+            width = innerWidth / 2.4 - (widthReducer.current - 20);
+        } 
+        else if(innerWidth > 1000) {
+            width = innerWidth / 2 - (widthReducer.current - 20);
+        } 
+        
         const slideIndex = index ?? currentIndex.current;
         sliderRef.current.style.transform = `translateX(-${slideIndex * width}px)`
-    }, [])
+    }, []);
+
+    const resizeHandler = useCallback(() => {
+        layout();
+        slide({});
+    }, [ layout, slide ]);
 
     useEffect(() => {
         const list = [ ...sliderRef.current.children ];
@@ -41,12 +80,22 @@ const Home = () => {
         setChildrenListRef.current?.(list);
     }, [ layout ])
 
+    useEffect(() => {
+        const currentWindow = window;
+    
+        currentWindow.addEventListener("resize", resizeHandler);
+
+        return () => {
+            currentWindow.removeEventListener("resize", resizeHandler);
+        };
+    }, [ resizeHandler ])
+
     return (
         <>
-            <main className="pt-4">
+            <main className="main pt-4 xl:pl-4">
                 <section className="overflow-hidden pl-4 relative w-full">
                     <ul 
-                        className="flex items-stretch justify-between relative trending-list"
+                        className="relative trending-list"
                         ref={sliderRef}>
                         {
                             data.filter(item => item.isTrending)
@@ -60,7 +109,7 @@ const Home = () => {
                         setChildrenListRef={setChildrenListRef} 
                     />
                 </section>
-                <section className="mt-8 px-4">
+                <section className="mt-8 px-4 xl:pr-8">
                     <ul className="flex flex-wrap items-stretch justify-between">
                         {
                             list.map((item, index) => <Card { ...item } key={index} />)
@@ -73,6 +122,30 @@ const Home = () => {
                             .trending-list {
                                 height: 180px;
                                 transition: transform 1.5s ease;
+                            }
+
+                            @media screen and (min-width: 420px) {
+                                .trending-list {
+                                    height: 220px;
+                                }
+                            }
+
+                            @media screen and (min-width: 710px) {
+                                .trending-list {
+                                    height: 240px;
+                                }
+                            }
+
+                            @media screen and (min-width: 900px) {
+                                .main {
+                                    width: calc(100% - 5rem);
+                                }
+                            }
+
+                            @media screen and (min-width: 1024px) {
+                                .main {
+                                    width: calc(100% - 6rem);
+                                }
                             }
                         `
                     }

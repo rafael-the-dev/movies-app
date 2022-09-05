@@ -37,7 +37,7 @@ const Header = () => {
 
     return (
         <header className={classNames(classes.header, 
-            "bg-blue-600 flex items-center justify-between p-3 lg:flex-col lg:rounded-2xl xl:py-4")}>
+            "bg-blue-600 flex items-center justify-between p-3 lg:flex-col lg:ml-4 lg:rounded-2xl xl:ml-8 xl:py-4")}>
             <div className="hidden flex-col grow items-center lg:flex">
                 <Link href='/'>{ logo }</Link>
                 <nav className="mt-8">{ navigation }</nav>
