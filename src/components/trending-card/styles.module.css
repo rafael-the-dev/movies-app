@@ -1,3 +1,32 @@
 .imageContainer, .imageContainer img {
     border-radius: .8rem;
 }
+
+.button {
+    background-color: #97979794;
+    height: 30px;
+    right: 5px;
+    top: 5px;
+    width: 30px;
+}
+
+.content {
+    bottom: 5px;
+}
+
+.categoryItem::before {
+    content: ".";
+    font-size: 1.4rem;
+    font-weight: bold;
+    left: 4px;
+    position: absolute;
+    top: 0;
+    transform: translateY(-38%);
+}
+
+
+.rating {
+    background-color: #585858a1;
+    border-radius: 13px;
+    padding: 0.35rem 0.5rem;
+}
