@@ -2,3 +2,18 @@
     box-sizing: border-box;
     font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #10141E;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom, #F43030, #161D2F, #5FB4A2);
+}

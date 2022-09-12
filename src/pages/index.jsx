@@ -92,7 +92,7 @@ const Home = () => {
 
     return (
         <>
-            <main className="main pt-4 xl:pl-4">
+            <main className="main overflow-y-auto pt-4 xl:pl-4">
                 <section className="overflow-hidden pl-4 relative w-full">
                     <ul 
                         className="relative trending-list"
