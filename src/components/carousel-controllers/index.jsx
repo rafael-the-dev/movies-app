@@ -68,7 +68,7 @@ const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
                             left: 0;
                             top: 50%;
                             transform: translate(0, -50%);
-                            width: 95%;
+                            width: 100%;
                         }
 
                         .controllers__button {

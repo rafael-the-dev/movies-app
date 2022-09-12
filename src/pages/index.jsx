@@ -109,8 +109,8 @@ const Home = () => {
                         setChildrenListRef={setChildrenListRef} 
                     />
                 </section>
-                <section className="mt-8 px-4 xl:pr-8">
-                    <ul className="flex flex-wrap items-stretch justify-between">
+                <section className="mt-8 px-4 xl:pr-4">
+                    <ul className="flex flex-wrap items-stretch">
                         {
                             list.map((item, index) => <Card { ...item } key={index} />)
                         }

@@ -36,7 +36,7 @@ const Card = ({ category, isBookmarked, rating, title, thumbnail, year }) => {
                 </li>
                 <li>{ rating }</li>
             </ul>
-            <h3 className="font-semibold mt-2 pl-1 text-base">
+            <h3 className="font-semibold mt-2 opacity-90 pl-1 text-base">
                 { title }
             </h3>
         </li>

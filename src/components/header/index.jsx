@@ -23,7 +23,7 @@ const Header = () => {
             <ListItem href="/">
                 <IconHome />
             </ListItem>
-            <ListItem href="/">
+            <ListItem href="movies">
                 <IconMovies />
             </ListItem>
             <ListItem href="/">
