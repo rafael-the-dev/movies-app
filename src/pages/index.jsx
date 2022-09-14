@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from "react"
 import data from "public/data.json";
 
 import Card from "src/components/card";
+import Title from "src/components/title";
 import TrendingCard from "src/components/trending-card";
 import CarouselControllers from "src/components/carousel-controllers";
 
@@ -94,8 +95,9 @@ const Home = () => {
         <>
             <main className="main overflow-y-auto pt-4 xl:pl-4">
                 <section className="overflow-hidden pl-4 relative w-full">
+                    <Title>Trending</Title>
                     <ul 
-                        className="relative trending-list"
+                        className="mt-4 relative trending-list"
                         ref={sliderRef}>
                         {
                             data.filter(item => item.isTrending)
@@ -110,7 +112,8 @@ const Home = () => {
                     />
                 </section>
                 <section className="mt-8 px-4 xl:pr-4">
-                    <ul className="flex flex-wrap items-stretch">
+                    <Title>Recommended for you</Title>
+                    <ul className="flex flex-wrap items-stretch mt-4">
                         {
                             list.map((item, index) => <Card { ...item } key={index} />)
                         }

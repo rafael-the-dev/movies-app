@@ -26,10 +26,10 @@ const Header = () => {
             <ListItem href="movies">
                 <IconMovies />
             </ListItem>
-            <ListItem href="/">
+            <ListItem href="tv-series">
                 <IconTv />
             </ListItem>
-            <ListItem href="/">
+            <ListItem href="bookmarked">
                 <IconBookmark />
             </ListItem>
         </ul>
