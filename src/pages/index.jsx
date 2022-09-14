@@ -5,6 +5,7 @@ import Card from "src/components/card";
 import Title from "src/components/title";
 import TrendingCard from "src/components/trending-card";
 import CarouselControllers from "src/components/carousel-controllers";
+import List from "src/components/list";
 
 const Home = () => {
     const list = data.filter(item => !item.isTrending);
@@ -97,7 +98,7 @@ const Home = () => {
                 <section className="overflow-hidden pl-4 relative w-full">
                     <Title>Trending</Title>
                     <ul 
-                        className="mt-4 relative trending-list"
+                        className="mt-6 relative trending-list"
                         ref={sliderRef}>
                         {
                             data.filter(item => item.isTrending)
@@ -113,11 +114,11 @@ const Home = () => {
                 </section>
                 <section className="mt-8 px-4 xl:pr-4">
                     <Title>Recommended for you</Title>
-                    <ul className="flex flex-wrap items-stretch mt-4">
+                    <List>
                         {
                             list.map((item, index) => <Card { ...item } key={index} />)
                         }
-                    </ul>
+                    </List>
                 </section>
                 <style jsx>
                     {
