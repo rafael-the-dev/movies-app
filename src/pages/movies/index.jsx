@@ -5,8 +5,18 @@ import Card from "src/components/card";
 import List from "src/components/list";
 import Title from "src/components/title";
 
-const Container = () => {
-    const list = data.filter(item => item.category.toLowerCase() === "movie");
+export async function getStaticProps() {
+    const moviesList = data.filter(item => item.category.toLowerCase() === "movie");
+
+    return {
+      props: {
+        moviesList
+      },
+    }
+};
+
+const Container = ({ moviesList }) => {
+    
 
     return (
         <main className="main overflow-y-auto pt-4 xl:pl-4">
@@ -14,7 +24,7 @@ const Container = () => {
                 <Title>Movies</Title>
                 <List>
                     {
-                        list.map((item, index) => <Card { ...item } key={index} />)
+                        moviesList.map((item, index) => <Card { ...item } key={index} />)
                     }
                 </List>
             </section>

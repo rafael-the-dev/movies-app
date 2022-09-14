@@ -5,9 +5,20 @@ import Card from "src/components/card";
 import List from "src/components/list";
 import Title from "src/components/title";
 
-const Container = () => {
+export async function getStaticProps() {
     const moviesList = data.filter(item => item.category.toLowerCase() === "movie" && item.isBookmarked);
     const tvSeriesList = data.filter(item => item.category.toLowerCase() === "tv series" && item.isBookmarked);
+
+    return {
+      props: {
+        moviesList,
+        tvSeriesList
+      },
+    }
+};
+
+const Container = ({ moviesList, tvSeriesList }) => {
+    
 
     return (
         <main className="grow main overflow-y-auto pt-4 xl:pl-4">

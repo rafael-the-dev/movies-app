@@ -7,8 +7,19 @@ import TrendingCard from "src/components/trending-card";
 import CarouselControllers from "src/components/carousel-controllers";
 import List from "src/components/list";
 
-const Home = () => {
-    const list = data.filter(item => !item.isTrending);
+export async function getStaticProps() {
+    const trendingMoviesList = data.filter(item => item.isTrending);
+    const recommendedMoviesList = data.filter(item => !item.isTrending);
+
+    return {
+      props: {
+        recommendedMoviesList,
+        trendingMoviesList,
+      },
+    }
+};
+
+const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
     const childrenList = useRef([]);
     const currentIndex = useRef(0);
     const sliderRef = useRef(null);
@@ -101,8 +112,7 @@ const Home = () => {
                         className="mt-6 relative trending-list"
                         ref={sliderRef}>
                         {
-                            data.filter(item => item.isTrending)
-                                .map((item, index) => <TrendingCard { ...item } key={index} />)
+                            trendingMoviesList.map((item, index) => <TrendingCard { ...item } key={index} />)
 
                         }
                     </ul>
@@ -116,7 +126,7 @@ const Home = () => {
                     <Title>Recommended for you</Title>
                     <List>
                         {
-                            list.map((item, index) => <Card { ...item } key={index} />)
+                            recommendedMoviesList.map((item, index) => <Card { ...item } key={index} />)
                         }
                     </List>
                 </section>
