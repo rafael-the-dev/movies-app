@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useRef } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import data from "public/data.json";
 
 import Card from "src/components/card";
-import Title from "src/components/title";
-import TrendingCard from "src/components/trending-card";
 import CarouselControllers from "src/components/carousel-controllers";
 import List from "src/components/list";
+import Form from "src/components/search-form"
+import Title from "src/components/title";
+import TrendingCard from "src/components/trending-card";
 
 export async function getStaticProps() {
     const trendingMoviesList = data.filter(item => item.isTrending);
@@ -20,6 +21,8 @@ export async function getStaticProps() {
 };
 
 const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
+    const [ searchList, setSearchList ] = useState([]);
+
     const childrenList = useRef([]);
     const currentIndex = useRef(0);
     const sliderRef = useRef(null);
@@ -106,6 +109,12 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
     return (
         <>
             <main className="main overflow-y-auto pt-4 xl:pl-4">
+                <div className="px-5">
+                    <Form 
+                        data={[ ...recommendedMoviesList, ...trendingMoviesList ]}
+                        setData={setSearchList}
+                    />
+                </div>
                 <section className="overflow-hidden pl-4 relative w-full">
                     <Title>Trending</Title>
                     <ul 
