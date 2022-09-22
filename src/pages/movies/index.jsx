@@ -28,7 +28,7 @@ const Container = ({ moviesList }) => {
                 setData={setSearchList}
             />
         </div>
-    ), []);
+    ), [ moviesList ]);
 
     const moviesSection = useMemo(() => (
         <section className="mt-8 px-4 xl:pr-4">
@@ -39,7 +39,7 @@ const Container = ({ moviesList }) => {
                 }
             </List>
         </section>
-    ), []);
+    ), [ moviesList ]);
 
     return (
         <Main>

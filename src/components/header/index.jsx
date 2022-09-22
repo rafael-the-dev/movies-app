@@ -44,10 +44,11 @@ const Header = () => {
             </div>
             <Link className="lg:hidden" href="/">{ logo }</Link>
             <nav className="lg:hidden">{ navigation }</nav>
-            <div className={classNames(classes.avatar, "rounded-full")}>
-                <img
+            <div className={classNames(classes.avatar, "relative rounded-full")}>
+                <Image
                     alt="user"
                     className={classNames("block h-full rounded-full w-full")}
+                    layout="fill"
                     src="/images/image-avatar.png"
                 />
             </div>

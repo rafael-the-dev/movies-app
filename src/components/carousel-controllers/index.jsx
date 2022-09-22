@@ -43,7 +43,7 @@ const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
     useEffect(() => {
         indexRef.current = index;
         slide({ index });
-    }, [ index, slide ]);
+    }, [ index, indexRef, slide ]);
 
     return (
         <div className="absolute controllers-container flex justify-between w-full">

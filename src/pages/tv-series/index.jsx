@@ -28,7 +28,7 @@ const Container = ({ tvSeriesList }) => {
                 setData={setSearchList}
             />
         </div>
-    ), []);
+    ), [ tvSeriesList ]);
 
     const tvSeriesSection = useMemo(() => (
         <section className="mt-8 px-4 xl:pr-4">

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "lint": "next lint",
     "start": "next start"
   },
   "keywords": [],
@@ -24,6 +25,8 @@
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
     "autoprefixer": "^10.4.4",
+    "eslint": "8.23.1",
+    "eslint-config-next": "12.3.1",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23"
   }

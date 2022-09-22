@@ -2,7 +2,6 @@
 import classNames from "classnames";
 import Image from "next/image";
 
-import IconHome from "public/icons/icon-nav-home.svg";
 import IconMovies from "public/icons/icon-category-movie.svg";
 import IconTv from "public/icons/icon-category-tv-series.svg";
 import IconBookmarkEmpty from "public/icons/icon-bookmark-empty.svg";
@@ -20,6 +19,7 @@ const Card = ({ category, isBookmarked, rating, title, thumbnail, year }) => {
         <li className={classNames(classes.container, `mb-6 text-white`)}>
             <div className={classNames(classes.imageContainer, `relative`)}>
                 <Image 
+                    alt={title}
                     layout="fill"
                     src={thumbnail.regular.small}
                 />

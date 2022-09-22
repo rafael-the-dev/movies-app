@@ -119,7 +119,7 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
                 setData={setSearchList}
             />
         </div>
-    ), []);
+    ), [ recommendedMoviesList, trendingMoviesList ]);
 
     const trendingSectionMemo = useMemo(() => (
         <section className="overflow-hidden pl-4 relative w-full">
