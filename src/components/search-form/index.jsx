@@ -8,18 +8,22 @@ import SearchOutlinedIcon from 'public/icons/icon-search.svg';
 const Form = ({ data, setData }) => {
     const changeHandler = e => {
         const { value } = e.target;
-
+        
         if(value.trim().length === 0 ) {
             setData([]);
             return;
         }
 
-        const result = data.filter(item => item.title.includes(value.toLowerCase()));
+        const result = data.filter(item => item.title.toLowerCase().includes(value.toLowerCase()));
         setData(result);
     };
 
+    const submitHandler = e => e.preventDefault();
+
     return (
-        <form className="flex items-center mb-4">
+        <form 
+            className="flex items-center mb-4"
+            onSubmit={submitHandler}>
             <SearchOutlinedIcon className={classNames("text-white", classes.icon)} />
             <input 
                 className="bg-transparent border-0 grow outline-none py-2 px-2 text-base text-slate-50"

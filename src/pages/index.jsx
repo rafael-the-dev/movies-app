@@ -7,7 +7,8 @@ import data from "public/data.json";
 import Card from "src/components/card";
 import CarouselControllers from "src/components/carousel-controllers";
 import List from "src/components/list";
-import Form from "src/components/search-form"
+import Form from "src/components/search-form";
+import Main from "src/components/main";
 import Title from "src/components/title";
 import TrendingCard from "src/components/trending-card";
 
@@ -112,7 +113,7 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
     }, [ resizeHandler ])
 
     const formMemo = useMemo(() => (
-        <div className="px-5">
+        <div className="px-4">
             <Form 
                 data={[ ...recommendedMoviesList, ...trendingMoviesList ]}
                 setData={setSearchList}
@@ -149,10 +150,10 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
             </List>
         </section>
     ), [ recommendedMoviesList ])
-    console.log(searchList)
+    
     return (
         <>
-            <main className={classNames(classes.main, "overflow-y-auto pt-4 xl:pl-4")}>
+            <Main>
                 { formMemo }
                 {
                     searchList.length > 0 ? (
@@ -170,7 +171,7 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
                         </>
                     )
                 }
-            </main>
+            </Main>
         </>
     );
 };
