@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import classes from "./styles.module.css";
+
 import classNames from "classnames";
 import ArrowIcon from "public/icons/icon-arrow.svg"
 
@@ -46,43 +48,21 @@ const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
     }, [ index, indexRef, slide ]);
 
     return (
-        <div className="absolute controllers-container flex justify-between w-full">
+        <div className={classNames(classes.controllersContainer, "absolute flex justify-between w-full")}>
             <button 
-                className={classNames(`controllers__button controllers__button--previous flex items-center 
+                className={classNames(classes.controllersButton, classes.controllersButtonPrevious, `flex items-center 
                 jusitfy-center rounded-full`, { "opacity-0": hasPreviousItem})}
                 disabled={hasPreviousItem}
                 onClick={previousItemClickHandler}>
                 <ArrowIcon />
             </button>
             <button 
-                className={classNames(`controllers__button flex items-center jusitfy-center rounded-full`,
+                className={classNames(classes.controllersButton, `flex items-center jusitfy-center rounded-full`,
                 { "opacity-0": hasNextItem})}
                 disabled={hasNextItem}
                 onClick={nextItemClickHandler}>
                 <ArrowIcon />
             </button>
-            <style jsx>
-                {
-                    `
-                        .controllers-container {
-                            left: 0;
-                            top: 50%;
-                            transform: translate(0, -50%);
-                            width: 100%;
-                        }
-
-                        .controllers__button {
-                            background-color: #97979794;
-                            height: 40px;
-                            width: 40px;
-                        }
-
-                        .controllers__button--previous {
-                            transform: rotate(180deg)
-                        }
-                    `
-                }
-            </style>
         </div>
     );
 };

@@ -1,0 +1,16 @@
+.controllersContainer {
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+}
+
+.controllersButton {
+    background-color: #97979794;
+    height: 40px;
+    width: 40px;
+}
+
+.controllersButtonPrevious {
+    transform: rotate(180deg)
+}
