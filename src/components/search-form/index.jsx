@@ -8,7 +8,13 @@ import SearchOutlinedIcon from 'public/icons/icon-search.svg';
 const Form = ({ data, setData }) => {
     const changeHandler = e => {
         const { value } = e.target;
-        const result = data.filter(item => item.title.toLowerCase() === value.toLowerCase());
+
+        if(value.trim().length === 0 ) {
+            setData([]);
+            return;
+        }
+
+        const result = data.filter(item => item.title.includes(value.toLowerCase()));
         setData(result);
     };
 

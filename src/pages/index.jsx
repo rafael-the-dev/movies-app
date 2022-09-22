@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import classNames from "classnames";
+
+import classes from "./styles.module.css";
 import data from "public/data.json";
 
 import Card from "src/components/card";
@@ -90,11 +93,13 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
     }, [ layout, slide ]);
 
     useEffect(() => {
-        const list = [ ...sliderRef.current.children ];
-        childrenList.current = list;
-        layout();
-        setChildrenListRef.current?.(list);
-    }, [ layout ])
+        if(searchList.length === 0) {
+            const list = [ ...sliderRef.current.children ];
+            childrenList.current = list;
+            layout();
+            setChildrenListRef.current?.(list);
+        }
+    }, [ layout, searchList ])
 
     useEffect(() => {
         const currentWindow = window;
@@ -106,73 +111,65 @@ const Home = ({ recommendedMoviesList, trendingMoviesList }) => {
         };
     }, [ resizeHandler ])
 
+    const formMemo = useMemo(() => (
+        <div className="px-5">
+            <Form 
+                data={[ ...recommendedMoviesList, ...trendingMoviesList ]}
+                setData={setSearchList}
+            />
+        </div>
+    ), []);
+
+    const trendingSectionMemo = useMemo(() => (
+        <section className="overflow-hidden pl-4 relative w-full">
+            <Title>Trending</Title>
+            <ul 
+                className={classNames(classes.trendingList, "mt-6 relative")}
+                ref={sliderRef}>
+                {
+                    trendingMoviesList.map((item, index) => <TrendingCard { ...item } key={index} />)
+
+                }
+            </ul>
+            <CarouselControllers 
+                indexRef={currentIndex}
+                slide={slide} 
+                setChildrenListRef={setChildrenListRef} 
+            />
+        </section>
+    ), [ slide, trendingMoviesList ]);
+
+    const recommendedSectionMemo = useMemo(() => (
+        <section className="mt-8 px-4 xl:pr-4">
+            <Title>Recommended for you</Title>
+            <List>
+                {
+                    recommendedMoviesList.map((item, index) => <Card { ...item } key={index} />)
+                }
+            </List>
+        </section>
+    ), [ recommendedMoviesList ])
+    console.log(searchList)
     return (
         <>
-            <main className="main overflow-y-auto pt-4 xl:pl-4">
-                <div className="px-5">
-                    <Form 
-                        data={[ ...recommendedMoviesList, ...trendingMoviesList ]}
-                        setData={setSearchList}
-                    />
-                </div>
-                <section className="overflow-hidden pl-4 relative w-full">
-                    <Title>Trending</Title>
-                    <ul 
-                        className="mt-6 relative trending-list"
-                        ref={sliderRef}>
-                        {
-                            trendingMoviesList.map((item, index) => <TrendingCard { ...item } key={index} />)
-
-                        }
-                    </ul>
-                    <CarouselControllers 
-                        indexRef={currentIndex}
-                        slide={slide} 
-                        setChildrenListRef={setChildrenListRef} 
-                    />
-                </section>
-                <section className="mt-8 px-4 xl:pr-4">
-                    <Title>Recommended for you</Title>
-                    <List>
-                        {
-                            recommendedMoviesList.map((item, index) => <Card { ...item } key={index} />)
-                        }
-                    </List>
-                </section>
-                <style jsx>
-                    {
-                        `
-                            .trending-list {
-                                height: 180px;
-                                transition: transform 1.5s ease;
-                            }
-
-                            @media screen and (min-width: 420px) {
-                                .trending-list {
-                                    height: 220px;
+            <main className={classNames(classes.main, "overflow-y-auto pt-4 xl:pl-4")}>
+                { formMemo }
+                {
+                    searchList.length > 0 ? (
+                        <div className="mt-4 px-4 xl:pr-4">
+                            <List>
+                                {
+                                    searchList.map((item, index) => <Card { ...item } key={`${item.title}${index}`} />)
                                 }
-                            }
-
-                            @media screen and (min-width: 710px) {
-                                .trending-list {
-                                    height: 240px;
-                                }
-                            }
-
-                            @media screen and (min-width: 900px) {
-                                .main {
-                                    width: calc(100% - 5rem);
-                                }
-                            }
-
-                            @media screen and (min-width: 1024px) {
-                                .main {
-                                    width: calc(100% - 6rem);
-                                }
-                            }
-                        `
-                    }
-                </style>
+                            </List>
+                        </div>
+                    ) : (
+                        <>
+                            { trendingSectionMemo }
+                            { recommendedSectionMemo }
+                        </>
+                    )
+                }
             </main>
         </>
     );

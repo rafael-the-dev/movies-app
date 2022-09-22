@@ -1,0 +1,28 @@
+.trendingList {
+    height: 180px;
+    transition: transform 1.5s ease;
+}
+
+@media screen and (min-width: 420px) {
+    .trendingList {
+        height: 220px;
+    }
+}
+
+@media screen and (min-width: 710px) {
+    .trendingList {
+        height: 240px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .main {
+        width: calc(100% - 5rem);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .main {
+        width: calc(100% - 6rem);
+    }
+}
